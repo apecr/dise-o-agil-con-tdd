@@ -33,9 +33,12 @@ public class TesterDeInteraccionConPedido {
 	
 	@Test
 	public void testHacerPedidoNoQuitaSiNoHaySuficienteEnStock() {
+		//Arrange
 		Pedido pedido = new Pedido(TALISKER, 51);
+		//Act
 		when(this.almacenMock.tieneIventario(TALISKER, 51)).thenReturn(false);
 		pedido.rellenar(this.almacenMock);
+		//Assert
 		verify(this.almacenMock).tieneIventario(TALISKER, 51);
 		assertFalse(pedido.estaRelleno());
 	}

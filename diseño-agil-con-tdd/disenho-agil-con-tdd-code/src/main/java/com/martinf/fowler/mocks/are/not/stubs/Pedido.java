@@ -12,18 +12,20 @@ public class Pedido {
 		this.talisker = talisker;
 		this.numberOfElements = i;
 		if (this.mailer == null) {
-			this.mailer = new MailService() {
-
-				@Override
-				public void send(Message message) {
-				}
-
-				@Override
-				public int numberSent() {
-					return 0;
-				}
-			};
+			setMailerFromScratch();
 		}
+	}
+
+	private void setMailerFromScratch() {
+		this.mailer = new MailService() {
+			@Override
+			public void send(Message message) {
+			}
+			@Override
+			public int numberSent() {
+				return 0;
+			}
+		};
 	}
 
 	public void fill(Almacen almacen) {
@@ -36,12 +38,20 @@ public class Pedido {
 
 	public void rellenar(Almacen almacen) {
 		if (almacen.tieneIventario(talisker, numberOfElements)){
-			almacen.quitar(talisker, numberOfElements);
-			this.relleno = true;
+			rellenamosPedidoSacandoDeInventario(almacen);
 		} else {
-			this.relleno = false;
-			mailer.send(null);
+			comunicamosPedidoNoCompletado();
 		}		
+	}
+
+	private void comunicamosPedidoNoCompletado() {
+		this.relleno = false;
+		mailer.send(null);
+	}
+
+	private void rellenamosPedidoSacandoDeInventario(Almacen almacen) {
+		almacen.quitar(talisker, numberOfElements);
+		this.relleno = true;
 	}
 
 	public void setMailer(MailService mailer) {

@@ -86,7 +86,7 @@
 		<!-- versiones de librerías -->
 		<checkstyle.version>2.11</checkstyle.version>
 		<org.mockito.version>1.10.19</org.mockito.version>
-		<easymock.version>3.4</easymock.version>
+		<easymock.version>2.5.2</easymock.version>
 		<junit.version>4.12</junit.version>
 		<jmock-junit4.version>2.8.2</jmock-junit4.version>
 		<!-- Otras propiedades -->

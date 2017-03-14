@@ -16,10 +16,13 @@ public class PedidoStateTester {
 
 	@Test
 	public void testPedidoEnviaEmailSiNoSeRellena() {
+		//Arrange
 		Pedido pedido = new Pedido(TALISKER, 51);
 		MailService mailer = new MailServiceStub();
 		pedido.setMailer(mailer);
+		//Act
 		pedido.rellenar(almacen);
+		//Assert
 		assertEquals(1, mailer.numberSent());
 	}
 
