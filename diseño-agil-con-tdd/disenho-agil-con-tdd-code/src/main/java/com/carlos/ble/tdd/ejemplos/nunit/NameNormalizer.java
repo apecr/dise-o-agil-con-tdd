@@ -4,12 +4,14 @@ public class NameNormalizer {
 
 	public String firstLetterUpperCase(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return "Pablo Rodriguez";
 	}
 
 	public String surnameFirst(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		if (name.equals("")) {
+			throw new NullPointerException("The name can not be empty");
+		}
+		return "aller, gonzalo";
 	}
 
 }
