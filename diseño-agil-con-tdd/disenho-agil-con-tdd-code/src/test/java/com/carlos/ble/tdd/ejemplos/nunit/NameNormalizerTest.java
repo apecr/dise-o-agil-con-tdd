@@ -7,12 +7,12 @@ import org.junit.Test;
 public class NameNormalizerTest {
 	@Test
 	public void FirstLetterUpperCase() {
-		// Arrange 13
+		// Arrange
 		String name = "pablo rodriguez";
 		NameNormalizer normalizer = new NameNormalizer();
-		// Act 17 S
+		// Act
 		String result = normalizer.FirstLetterUpperCase(name);
-		// Assert 21
+		// Assert
 		assertEquals("Pablo Rodriguez", result);
 	}
 }
