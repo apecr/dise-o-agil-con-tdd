@@ -1,0 +1,20 @@
+# Aceptación - "2 + 2", devuelve 4
+La cadena "2 + 2"tiene dos números y un operador que son ’2’, ’2’ y ’+’
+# Aceptación - "5 + 4 * 2 / 2", devuelve 9
+# Aceptación - "3 / 2", produce ERROR
+# Aceptación - "* * 4 - 2": produce ERROR # Aceptación - "* 4 5 - 2": produce ERROR
+# Aceptación - "* 4 5 - 2 : produce ERROR
+# Aceptación - "*45-2-": produce ERROR
+# Aceptación - "2 + -2"devuelve 0
+# Aceptación - Límite Superior =100
+# Aceptación - Límite Superior =500
+# Aceptación - Límite Inferior = -1000
+# Aceptación - Límite Inferior = -10
+A: El primer argumento sobrepasa el límite superior
+B: El primer argumento sobrepasa el límite inferior
+C: El segundo argumento sobrepasa el límite superior
+D: El segundo argumento sobrepasa el límite inferior
+E: El resultado de una operación sobrepasa el límite superior
+F: El resultado de una operación sobrepasa el límite inferior
+Todos los casos de uso anteriores se aplican
+a todas las operaciones aritmeticas
