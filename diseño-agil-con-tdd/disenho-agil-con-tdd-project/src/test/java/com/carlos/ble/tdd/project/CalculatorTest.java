@@ -1,13 +1,9 @@
 package com.carlos.ble.tdd.project;
 
-import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -15,8 +11,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class CalculatorTest {
 
 	private Calculator calculator;
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
 
 	@Before
 	public void setUp() {
@@ -71,24 +65,4 @@ public class CalculatorTest {
 		// Assert
 		assertEquals(-5, result);
 	}
-
-	
-
-	
-
-	@Test
-	public void addExcedingUpperLimit() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("Result raise upper limit"));
-		// Act
-		this.calculator.add(10, 98);
-		// Assert
-		fail();
-	}
-
-	
-
-
-
 }

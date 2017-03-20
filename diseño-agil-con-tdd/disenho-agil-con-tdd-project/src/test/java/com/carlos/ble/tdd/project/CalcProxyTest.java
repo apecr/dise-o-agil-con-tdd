@@ -14,6 +14,7 @@ public class CalcProxyTest {
 	private Calculator calculator;
 	private LimitsValidator limitsValidator;
 	private CalcProxy calcProxy;
+	private CalcProxy calcProxyWithLimits;
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
@@ -22,6 +23,7 @@ public class CalcProxyTest {
 		this.calculator = new Calculator();
 		this.limitsValidator = new LimitsValidator(-100, 100);
 		this.calcProxy = new CalcProxy(this.limitsValidator, this.calculator);
+		this.calcProxyWithLimits = new CalcProxy(new LimitsValidator(-20, 10), this.calculator);
 	}
 
 	@Test
@@ -74,8 +76,45 @@ public class CalcProxyTest {
 		thrown.expect(ArithmeticException.class);
 		thrown.expectMessage(is("First argument exceeds limits"));
 		// Act
-		this.calcProxy.binaryOperation(this.calculator.getClass().getMethod("add", Integer.class, Integer.class),
-				this.limitsValidator.getUpperLimit() + 1, this.limitsValidator.getLowerLimit() - 1);
+		this.calcProxyWithLimits
+				.binaryOperation(this.calculator.getClass().getMethod("add", Integer.class, Integer.class), 30, 50);
+		// Assert
+		fail();
+	}
+
+	@Test
+	public void addArgumentsExceedLimitsRevers() throws NoSuchMethodException, SecurityException {
+		// Arrange
+		thrown.expect(ArithmeticException.class);
+		thrown.expectMessage(is("First argument exceeds limits"));
+		// Act
+		this.calcProxyWithLimits
+				.binaryOperation(this.calculator.getClass().getMethod("add", Integer.class, Integer.class), -30, -50);
+		// Assert
+		fail();
+	}
+
+	@Test
+	public void addResultExceddsUpperLimit() throws NoSuchMethodException, SecurityException {
+		// Arrange
+		thrown.expect(ArithmeticException.class);
+		thrown.expectMessage(is("Result exceeds limits"));
+		// Act
+		this.calcProxyWithLimits
+				.binaryOperation(this.calculator.getClass().getMethod("add", Integer.class, Integer.class), 10, 10);
+		// Assert
+		fail();
+	}
+
+	
+	@Test
+	public void addResultExceddsLowerLimit() throws NoSuchMethodException, SecurityException {
+		// Arrange
+		thrown.expect(ArithmeticException.class);
+		thrown.expectMessage(is("Result exceeds limits"));
+		// Act
+		this.calcProxyWithLimits
+				.binaryOperation(this.calculator.getClass().getMethod("add", Integer.class, Integer.class), -20, -1);
 		// Assert
 		fail();
 	}

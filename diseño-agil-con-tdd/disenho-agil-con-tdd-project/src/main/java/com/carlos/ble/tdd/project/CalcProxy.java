@@ -16,8 +16,8 @@ public class CalcProxy {
 	public int binaryOperation(Method method, int i, int j) {
 		this.limitsValidator.validateParams(i, j);
 		int result = 0;
-		for (Method calculatorMethod : this.calculator.getClass().getMethods()){
-			if (calculatorMethod.equals(method)){
+		for (Method calculatorMethod : this.calculator.getClass().getMethods()) {
+			if (calculatorMethod.equals(method)) {
 				result = callRealCalculatorMethod(i, j, result, calculatorMethod);
 			}
 		}
@@ -29,7 +29,7 @@ public class CalcProxy {
 		try {
 			result = (int) calculatorMethod.invoke(this.calculator, i, j);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		return result;
 	}
