@@ -8,7 +8,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CalculatorTest {
 
 	private Calculator calculator;
@@ -17,7 +20,7 @@ public class CalculatorTest {
 
 	@Before
 	public void setUp() {
-		this.calculator = new Calculator(100, -100);
+		this.calculator = new Calculator();
 	}
 
 	@Test
@@ -69,25 +72,9 @@ public class CalculatorTest {
 		assertEquals(-5, result);
 	}
 
-	@Test
-	public void setAndGetLimits() {
-		// Act
-		this.calculator = new Calculator(200, -200);
-		// Assert
-		assertEquals(200, this.calculator.getUpperLimit());
-		assertEquals(-200, this.calculator.getLowerLimit());
-	}
+	
 
-	@Test
-	public void substractExcedingLowerLimit() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("Result below lower limit"));
-		// Act
-		this.calculator.substract(-10, 96);
-		// Assert
-		fail();
-	}
+	
 
 	@Test
 	public void addExcedingUpperLimit() {
@@ -100,108 +87,8 @@ public class CalculatorTest {
 		fail();
 	}
 
-	@Test
-	public void argumentsExceedLimits() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("First argument exceeds upper limit"));
-		// Act
-		this.calculator.add(this.calculator.getUpperLimit() + 1, this.calculator.getLowerLimit() - 1);
-		// Assert
-		fail();
-	}
+	
 
-	@Test
-	public void secondArgumentExceedLimits() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("Second argument exceeds lower limit"));
-		// Act
-		this.calculator.add(this.calculator.getUpperLimit(), this.calculator.getLowerLimit() - 1);
-		// Assert
-		fail();
-	}
 
-	@Test
-	public void argumentsExceedLimitsInverse() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("First argument exceeds lower limit"));
-		// Act
-		this.calculator.add(this.calculator.getLowerLimit() - 1, this.calculator.getUpperLimit() + 1);
-		// Assert
-		fail();
-	}
-	
-	@Test
-	public void secondArgumentExceedLimitsInverse() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("Second argument exceeds upper limit"));
-		// Act
-		this.calculator.add(this.calculator.getLowerLimit(), this.calculator.getUpperLimit() + 1);
-		// Assert
-		fail();
-	}
-	
-	@Test
-	public void argumentsExceedLimitsOnSubstract() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("First argument exceeds upper limit"));
-		// Act
-		this.calculator.substract(this.calculator.getUpperLimit() + 1, this.calculator.getLowerLimit() - 1);
-		// Assert
-		fail();
-	}
-	
-	@Test
-	public void substractArgumentsExceedLimits() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("First argument exceeds upper limit"));
-		// Act
-		this.calculator.substract(this.calculator.getUpperLimit() + 1, this.calculator.getLowerLimit() - 1);
-		// Assert
-		fail();
-	}
-
-	@Test
-	public void substractSecondArgumentExceedLimits() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("Second argument exceeds lower limit"));
-		// Act
-		this.calculator.substract(this.calculator.getUpperLimit(), this.calculator.getLowerLimit() - 1);
-		// Assert
-		fail();
-	}
-
-	@Test
-	public void substractArgumentsExceedLimitsInverse() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("First argument exceeds lower limit"));
-		// Act
-		this.calculator.substract(this.calculator.getLowerLimit() - 1, this.calculator.getUpperLimit() + 1);
-		// Assert
-		fail();
-	}
-	
-	@Test
-	public void substractSecondArgumentExceedLimitsInverse() {
-		// Arrange
-		thrown.expect(ArithmeticException.class);
-		thrown.expectMessage(is("Second argument exceeds upper limit"));
-		// Act
-		this.calculator.substract(this.calculator.getLowerLimit(), this.calculator.getUpperLimit() + 1);
-		// Assert
-		fail();
-	}
-	
-	@Test
-	public void substractIsUsingValidator(){
-		
-	}
 
 }
