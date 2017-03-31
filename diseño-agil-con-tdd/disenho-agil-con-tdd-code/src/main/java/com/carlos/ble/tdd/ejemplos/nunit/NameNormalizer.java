@@ -7,7 +7,7 @@ public class NameNormalizer {
 	}
 
 	public String surnameFirst(String name) {
-		if (name.equals("")) {
+		if ("".equals(name)) {
 			throw new NullPointerException("The name can not be empty");
 		}
 		return "aller, gonzalo";

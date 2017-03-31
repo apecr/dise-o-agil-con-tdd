@@ -18,18 +18,19 @@ public class CalcProxy {
 		int result = 0;
 		for (Method calculatorMethod : this.calculator.getClass().getMethods()) {
 			if (calculatorMethod.equals(method)) {
-				result = callRealCalculatorMethod(i, j, result, calculatorMethod);
+				result = callRealCalculatorMethod(i, j, calculatorMethod);
 			}
 		}
 		this.limitsValidator.validateResult(result);
 		return result;
 	}
 
-	private int callRealCalculatorMethod(int i, int j, int result, Method calculatorMethod) {
+	private int callRealCalculatorMethod(int i, int j, Method calculatorMethod) {
+		int result = 0;
 		try {
 			result = (int) calculatorMethod.invoke(this.calculator, i, j);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			throw new RuntimeException(e);
+			throw new TddException(e);
 		}
 		return result;
 	}
